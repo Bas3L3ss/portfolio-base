@@ -56,7 +56,7 @@ const PhoneUI = () => {
               damping: 30,
             }}
           >
-            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 dark:text-white flex flex-col items-center">
+            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2  text-white flex flex-col items-center">
               <ChevronUp className="animate-bounce w-8 h-8" />
               <p className="text-sm mt-2 ">Swipe up to unlock</p>
             </div>

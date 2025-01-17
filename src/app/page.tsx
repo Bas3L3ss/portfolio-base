@@ -7,13 +7,14 @@ import IPhoneFrame from "@/components/IphoneIframe";
 import PhoneUI from "@/components/PhoneUI";
 import BootAnimation from "@/components/BootAnimation";
 import Footer from "@/components/Footer";
+import Typewriter from "typewriter-effect";
 
 export default function Home() {
   const [isBooting, setIsBooting] = useState(true);
 
   const { batteryLevel, setBatteryLevel } = useAppStore();
   useEffect(() => {
-    const handleTabKey = (e) => {
+    const handleTabKey = (e: KeyboardEvent) => {
       if (e.key === "Tab") {
         e.preventDefault(); // Prevent default tab navigation
       }
@@ -47,7 +48,16 @@ export default function Home() {
       <article className="flex flex-col items-center justify-between p-6 md:p-24 space-y-16">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <h1 className="text-3xl font-extrabold text-indigo-700">
-            Hey 👋, i&apos;m Pham Thien Hung
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString("Welcomes to my portfolio 👋")
+                  .pauseFor(1000)
+                  .deleteAll()
+                  .typeString("I'm Pham Thien Hung")
+                  .start();
+              }}
+            />
           </h1>
           <p className="text-xl text-gray-600 dark:text-white  ">
             Welcome to my portfolio! I am a passionate developer with a love for

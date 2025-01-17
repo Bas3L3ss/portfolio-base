@@ -20,8 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} max-h-[100vh]`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
           disableTransitionOnChange
         >
           {children}

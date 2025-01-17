@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AppScreen from "./AppScreen";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Mail, Phone } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { LinkedIn } from "developer-icons";
 import BlogCard from "./BLogCard";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
   const experiences = [
@@ -240,55 +242,106 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
 
   return (
     <AppScreen onBack={onBack} title="Contact">
-      <section className="p-6 space-y-8">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <Input
-              {...register("email")}
-              placeholder="Your email"
-              type="email"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message as string}
-              </p>
-            )}
-          </div>
-          <div>
-            <Textarea
-              {...register("message")}
-              placeholder="Your message"
-              rows={4}
-            />
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.message.message as string}
-              </p>
-            )}
-          </div>
-          <Button type="submit" disabled={isSending}>
-            {isSending ? "Sending..." : "Send Message"}
-          </Button>
-          {sendResult && (
-            <p
-              className={
-                sendResult.includes("success")
-                  ? "text-green-500"
-                  : "text-red-500"
-              }
-            >
-              {sendResult}
-            </p>
-          )}
-        </form>
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold">Connect with me</h3>
-          <div className="flex space-x-4">
+      <div className="max-w-2xl mx-auto p-6">
+        <Card className="mb-5  !bg-slate-900">
+          <CardContent className="pt-6">
+            <div className="grid   gap-6 mb-8">
+              <a
+                href="mailto:phamthen.hun060906@gmail.com"
+                className="flex items-center p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors"
+                aria-label="Email me at phamthen.hun060906@gmail.com"
+              >
+                <Mail className="h-5 w-5 mr-3 text-gray-500" />
+                <div>
+                  <div className="text-sm text-gray-500">Email</div>
+                  <div className="text-sm font-medium">
+                    phamthen.hun060906@gmail.com
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="tel:+84865974700"
+                className="flex items-center p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors"
+                aria-label="Call me at 0865974700"
+              >
+                <Phone className="h-5 w-5 mr-3 text-gray-500" />
+                <div>
+                  <div className="text-sm text-gray-500">Phone</div>
+                  <div className="text-sm font-medium">0865974700</div>
+                </div>
+              </a>
+            </div>
+
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className=" bg-slate-900 px-2 text-sm text-muted-foreground">
+                  or
+                </span>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div>
+                <Input
+                  {...register("email")}
+                  placeholder="Your email"
+                  type="email"
+                  className="w-full"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message as string}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <Textarea
+                  {...register("message")}
+                  placeholder="Your message"
+                  rows={4}
+                  className="w-full"
+                />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.message.message as string}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <Button type="submit" disabled={isSending} className="w-full">
+                  {isSending ? "Sending..." : "Send Message"}
+                </Button>
+                {sendResult && (
+                  <p
+                    className={`text-center text-sm ${
+                      sendResult.includes("success")
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {sendResult}
+                  </p>
+                )}
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+
+        <div className="text-center pb-5">
+          <h3 className="text-lg font-semibold mb-4">Connect with me</h3>
+          <div className="flex justify-center space-x-6">
             <a
               href="https://github.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900"
+              className="text-white hover:text-gray-300 transition-colors"
+              aria-label="Visit my GitHub profile"
             >
               <Github className="h-6 w-6" />
             </a>
@@ -296,13 +349,14 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
               href="https://linkedin.com/in/yourusername"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900"
+              className="  transition-colors"
+              aria-label="Visit my LinkedIn profile"
             >
               <LinkedIn className="h-6 w-6" />
             </a>
           </div>
         </div>
-      </section>
+      </div>
     </AppScreen>
   );
 }
