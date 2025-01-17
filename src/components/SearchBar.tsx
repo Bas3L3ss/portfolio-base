@@ -158,7 +158,7 @@ export function SearchBar() {
                     {suggestedApps.map((app) => {
                       return (
                         <CommandItem
-                          key={app.name}
+                          key={app.name + "-suggested"}
                           className="hover:bg-white/10"
                         >
                           {app.icon}
@@ -175,7 +175,7 @@ export function SearchBar() {
                     {appsToSearch.map((app) => {
                       return (
                         <CommandItem
-                          key={app.name}
+                          key={app.name + "-search"}
                           className="hover:bg-white/10"
                         >
                           {app.icon}

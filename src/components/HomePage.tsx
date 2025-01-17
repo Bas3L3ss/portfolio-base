@@ -177,6 +177,10 @@ const HomePage = () => {
       {activeScreen === "testimonials" && (
         <TestimonialsScreen onBack={closeScreen} />
       )}
+      {activeScreen === "blogs" && <TestimonialsScreen onBack={closeScreen} />}
+      {activeScreen === "contact" && (
+        <TestimonialsScreen onBack={closeScreen} />
+      )}
     </div>
   );
 };
