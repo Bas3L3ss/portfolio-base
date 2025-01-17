@@ -99,7 +99,7 @@ const PhoneUI = () => {
               damping: 30,
             }}
           >
-            <div className="w-1/2 h-full flex-shrink-0">
+            <div className="w-1/2 h-[94.5%] flex-shrink-0">
               <HomePage />
             </div>
             <div className="w-1/2  h-full flex-shrink-0">

@@ -10,9 +10,11 @@ import {
   Newspaper,
 } from "lucide-react";
 import {
+  CTAScreen,
   AboutScreen,
   ExperienceScreen,
   TestimonialsScreen,
+  BlogScreen,
 } from "./AppScreens";
 import AppIcon from "./AppIcon";
 import WeatherWidget from "./WeatherWidget";
@@ -177,10 +179,8 @@ const HomePage = () => {
       {activeScreen === "testimonials" && (
         <TestimonialsScreen onBack={closeScreen} />
       )}
-      {activeScreen === "blogs" && <TestimonialsScreen onBack={closeScreen} />}
-      {activeScreen === "contact" && (
-        <TestimonialsScreen onBack={closeScreen} />
-      )}
+      {activeScreen === "blogs" && <BlogScreen onBack={closeScreen} />}
+      {activeScreen === "contact" && <CTAScreen onBack={closeScreen} />}
     </div>
   );
 };

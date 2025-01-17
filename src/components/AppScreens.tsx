@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
+
+import { useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import AppScreen from "./AppScreen";
-import { ExternalLink } from "lucide-react";
-import { Avatar } from "@radix-ui/react-avatar";
-import { AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ExternalLink, Github } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { LinkedIn } from "developer-icons";
+import BlogCard from "./BLogCard";
 
 const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
   const experiences = [
@@ -34,7 +43,7 @@ const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <AppScreen title="Experience" onBack={onBack}>
-      <div className="p-4">
+      <section className="p-4">
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.title}
@@ -61,7 +70,7 @@ const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
             )}
           </motion.div>
         ))}
-      </div>
+      </section>
     </AppScreen>
   );
 };
@@ -69,7 +78,7 @@ const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
 // About Screen Component
 const AboutScreen = ({ onBack }: { onBack: () => void }) => (
   <AppScreen title="About Me" onBack={onBack}>
-    <div className="p-4">
+    <section className="p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -102,7 +111,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => (
           </ul>
         </div>
       </motion.div>
-    </div>
+    </section>
   </AppScreen>
 );
 
@@ -133,7 +142,7 @@ const TestimonialsScreen = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <AppScreen title="Testimonials" onBack={onBack}>
-      <div className="p-6 space-y-8">
+      <section className="p-6 space-y-8">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={testimonial.name}
@@ -180,9 +189,167 @@ const TestimonialsScreen = ({ onBack }: { onBack: () => void }) => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </section>
     </AppScreen>
   );
 };
 
-export { AboutScreen, ExperienceScreen, TestimonialsScreen };
+const formSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  message: z
+    .string()
+    .min(10, { message: "Message must be at least 10 characters long" }),
+});
+
+function CTAScreen({ onBack }: { onBack: () => void }) {
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = async (data: FieldValues) => {
+    setIsSending(true);
+    setSendResult(null);
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      setSendResult("Email sent successfully!");
+      reset();
+    } catch {
+      setSendResult("Failed to send email. Please try again.");
+    }
+    setIsSending(false);
+  };
+
+  return (
+    <AppScreen onBack={onBack} title="Contact">
+      <section className="p-6 space-y-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div>
+            <Input
+              {...register("email")}
+              placeholder="Your email"
+              type="email"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message as string}
+              </p>
+            )}
+          </div>
+          <div>
+            <Textarea
+              {...register("message")}
+              placeholder="Your message"
+              rows={4}
+            />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.message.message as string}
+              </p>
+            )}
+          </div>
+          <Button type="submit" disabled={isSending}>
+            {isSending ? "Sending..." : "Send Message"}
+          </Button>
+          {sendResult && (
+            <p
+              className={
+                sendResult.includes("success")
+                  ? "text-green-500"
+                  : "text-red-500"
+              }
+            >
+              {sendResult}
+            </p>
+          )}
+        </form>
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold">Connect with me</h3>
+          <div className="flex space-x-4">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Github className="h-6 w-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <LinkedIn className="h-6 w-6" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </AppScreen>
+  );
+}
+
+const blogs = [
+  {
+    id: 1,
+    title: "Getting Started with Next.js",
+    summary: "Learn how to build modern web applications with Next.js",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "/blog/getting-started-with-nextjs",
+  },
+  {
+    id: 2,
+    title: "Mastering TypeScript",
+    summary:
+      "Dive deep into TypeScript and improve your JavaScript development",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "/blog/mastering-typescript",
+  },
+  {
+    id: 3,
+    title: "The Power of Tailwind CSS",
+    summary: "Discover how Tailwind CSS can streamline your styling workflow",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "/blog/power-of-tailwind-css",
+  },
+];
+
+function BlogScreen({ onBack }: { onBack: () => void }) {
+  return (
+    <AppScreen title="My blogs " onBack={onBack}>
+      <section className="p-6 space-y-8">
+        <div className="flex flex-col gap-4 ">
+          {blogs.map((blog) => (
+            <BlogCard key={blog.id} {...blog} />
+          ))}
+        </div>
+      </section>
+    </AppScreen>
+  );
+}
+
+export {
+  AboutScreen,
+  ExperienceScreen,
+  TestimonialsScreen,
+  BlogScreen,
+  CTAScreen,
+};
