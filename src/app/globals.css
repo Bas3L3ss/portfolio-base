@@ -78,7 +78,7 @@ body #phone {
 
 #phone {
   border-radius: 60px;
-  box-shadow: 0 0 20px rgba(200, 200, 200, 0.6),
-    0 0 40px rgba(180, 180, 180, 0.4), 0 0 60px rgba(160, 160, 160, 0.3),
-    0 0 90px rgba(140, 140, 140, 0.2), 0 0 110px rgba(120, 120, 120, 0.1);
+  box-shadow: 15px 0 15px rgba(200, 200, 200, 0.6),
+    15px 0 40px rgba(180, 180, 180, 0.4), 15px 0 60px rgba(160, 160, 160, 0.3),
+    15px 0 90px rgba(140, 140, 140, 0.2), 15px 0 110px rgba(120, 120, 120, 0.1);
 }

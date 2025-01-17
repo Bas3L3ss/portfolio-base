@@ -35,7 +35,7 @@ const PhoneUI = () => {
 
   return (
     <motion.div
-      className="bg-white dark:bg-black w-full h-full overflow-hidden relative touch-pan-y"
+      className=" w-full  h-full bg-black flex flex-col items-center justify-center overflow-hidden   bg-white/20 dark:bg-black/20  relative touch-pan-y"
       drag={!isRevealed ? "y" : false}
       dragConstraints={{ top: 0, bottom: 0 }}
       dragElastic={0.2}

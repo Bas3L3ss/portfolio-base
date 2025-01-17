@@ -10,7 +10,7 @@ const IPhoneFrame: React.FC<IPhoneFrameProps> = ({ children }) => {
       {/* Device Frame */}
       <div
         className={`
-        relative w-[375px] h-[812px] rounded-[55px] overflow-hidden shadow-2xl
+        relative w-[405px] h-[792px] rounded-[55px] overflow-hidden shadow-2xl
         bg-gray-200 dark:bg-gray-800
         transition-colors duration-300
       `}
@@ -33,14 +33,11 @@ const IPhoneFrame: React.FC<IPhoneFrameProps> = ({ children }) => {
               <div className="absolute top-[10px] left-[32px] w-[6px] h-[6px] rounded-full bg-gray-800"></div>
             </div>
             {/* Main Content Area */}
-            {/*  
-            TODOS: bg-white dark:bg-gray-900 will be replaced
-            */}
             <div
-              className="absolute inset-0 mt-[35px] z-10 overflow-y-auto
-                            bg-white dark:bg-gray-900 
+              className="absolute inset-0 mt-[35px] z-10 overflow-y-auto 
                             text-gray-900 dark:text-gray-100
                             transition-colors duration-300"
+              style={{ backgroundImage: "url('/wallpaper.jpg')" }}
             >
               {children}
             </div>

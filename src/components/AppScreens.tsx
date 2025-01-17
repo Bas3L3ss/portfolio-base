@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import AppScreen from "./AppScreen";
-import { Progress } from "./ui/progress";
 import { ExternalLink } from "lucide-react";
 import { Avatar } from "@radix-ui/react-avatar";
 import { AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -107,108 +106,6 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => (
   </AppScreen>
 );
 
-const SkillsScreen = ({ onBack }: { onBack: () => void }) => {
-  const skills = [
-    { name: "TypeScript", level: 90 },
-    { name: "Next.js", level: 85 },
-    { name: "React", level: 95 },
-    { name: "Node.js", level: 80 },
-    { name: "Python", level: 75 },
-    { name: "HTML/CSS", level: 90 },
-    { name: "GraphQL", level: 70 },
-  ];
-
-  return (
-    <AppScreen title="Skills" onBack={onBack}>
-      <div className="p-4">
-        <div className="space-y-6">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="flex justify-between mb-2">
-                <span className="font-medium">{skill.name}</span>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {skill.level}%
-                </span>
-              </div>
-              <Progress value={skill.level} className="h-2" />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </AppScreen>
-  );
-};
-
-const ProjectsScreen = ({ onBack }: { onBack: () => void }) => {
-  const projects = [
-    {
-      name: "Project 1",
-      description:
-        "A sophisticated web application built with React and Next.js",
-      tech: ["React", "Next.js", "TypeScript"],
-      link: "#",
-    },
-    {
-      name: "Project 2",
-      description: "Mobile-first e-commerce platform with real-time features",
-      tech: ["React Native", "Firebase", "Node.js"],
-      link: "#",
-    },
-    {
-      name: "Project 3",
-      description: "AI-powered data visualization dashboard",
-      tech: ["Python", "TensorFlow", "D3.js"],
-      link: "#",
-    },
-  ];
-
-  return (
-    <AppScreen title="Projects" onBack={onBack}>
-      <div className="p-4 space-y-4">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm"
-          >
-            <div className="flex justify-between items-start">
-              <h3 className="font-semibold">{project.name}</h3>
-              <motion.a
-                whileTap={{ scale: 0.95 }}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-              >
-                <ExternalLink size={16} />
-              </motion.a>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mt-3">
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </AppScreen>
-  );
-};
 const TestimonialsScreen = ({ onBack }: { onBack: () => void }) => {
   const testimonials = [
     {
@@ -288,10 +185,4 @@ const TestimonialsScreen = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-export {
-  AboutScreen,
-  ExperienceScreen,
-  SkillsScreen,
-  ProjectsScreen,
-  TestimonialsScreen,
-};
+export { AboutScreen, ExperienceScreen, TestimonialsScreen };
