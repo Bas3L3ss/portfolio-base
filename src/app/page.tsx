@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useAppStore } from "../lib/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppStore } from "@/lib/store";
 import IPhoneFrame from "@/components/IphoneIframe";
 import PhoneUI from "@/components/PhoneUI";
 import BootAnimation from "@/components/BootAnimation";
