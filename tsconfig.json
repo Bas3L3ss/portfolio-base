@@ -1,30 +1,3 @@
-// {
-//   "compilerOptions": {
-//     "target": "ES2017",
-//     "lib": ["dom", "dom.iterable", "esnext"],
-//     "allowJs": true,
-//     "skipLibCheck": true,
-//     "strict": true,
-//     "noEmit": true,
-//     "esModuleInterop": true,
-//     "module": "esnext",
-//     "moduleResolution": "bundler",
-//     "resolveJsonModule": true,
-//     "isolatedModules": true,
-//     "jsx": "preserve",
-//     "incremental": true,
-//     "plugins": [
-//       {
-//         "name": "next"
-//       }
-//     ],
-//     "paths": {
-//       "@/*": ["./src/*"]
-//     }
-//   },
-//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-//   "exclude": ["node_modules"]
-// }
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -35,20 +8,19 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Changed for better compatibility
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".", // Explicit base URL for clarity
-    "paths": {
-      "@/*": ["src/*"] // Ensure this matches your file structure
-    },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
