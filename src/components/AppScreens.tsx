@@ -77,7 +77,6 @@ const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-// About Screen Component
 const AboutScreen = ({ onBack }: { onBack: () => void }) => (
   <AppScreen title="About Me" onBack={onBack}>
     <section className="p-4">
@@ -124,21 +123,21 @@ const TestimonialsScreen = ({ onBack }: { onBack: () => void }) => {
       position: "Software Engineer",
       text: "This is an amazing platform! It really helped me streamline my work process and collaborate more efficiently with my team.",
       company: "Tech Corp",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg", // Replace with real avatar URL
+      avatar: "https://randomuser.me/api/portraits/men/1.jpg",
     },
     {
       name: "Jane Smith",
       position: "Product Manager",
       text: "The user interface is incredibly intuitive. I've never experienced such a smooth workflow before. Highly recommend it!",
       company: "Innovative Solutions",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg", // Replace with real avatar URL
+      avatar: "https://randomuser.me/api/portraits/women/1.jpg",
     },
     {
       name: "Michael Brown",
       position: "UX Designer",
       text: "The design tools provided helped us create a fantastic user experience for our customers. Couldn't have asked for more.",
       company: "Design Studios",
-      avatar: "", // No avatar, will fall back to initials
+      avatar: "",
     },
   ];
 

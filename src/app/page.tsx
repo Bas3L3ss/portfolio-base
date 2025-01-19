@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAppStore } from "../lib/store";
 import { motion, AnimatePresence } from "framer-motion";
 import IPhoneFrame from "@/components/IphoneIframe";
 import PhoneUI from "@/components/PhoneUI";
 import BootAnimation from "@/components/BootAnimation";
 import Footer from "@/components/Footer";
 import Typewriter from "typewriter-effect";
+import { useAppStore } from "@/lib/store";
 
 export default function Home() {
   const [isBooting, setIsBooting] = useState(true);
@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const handleTabKey = (e: KeyboardEvent) => {
       if (e.key === "Tab") {
-        e.preventDefault(); // Prevent default tab navigation
+        e.preventDefault();
       }
     };
 
