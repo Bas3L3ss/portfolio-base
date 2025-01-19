@@ -45,9 +45,6 @@ const PhoneUI = () => {
         {!isRevealed && (
           <motion.div
             className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/api/placeholder/400/800')",
-            }}
             initial={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -100 }}
             transition={{
