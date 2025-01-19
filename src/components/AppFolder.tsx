@@ -158,4 +158,4 @@ const AppFolder = ({
   );
 };
 
-export default AppFolder;
+export default React.memo(AppFolder);
