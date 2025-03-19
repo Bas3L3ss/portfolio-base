@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Apple } from "lucide-react";
+import AppleLogo from "./icon/Apple";
 
 const BootAnimation = () => {
   return (
@@ -12,7 +12,7 @@ const BootAnimation = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="mb-8"
       >
-        <Apple className="text-white w-24 h-24" />
+        <AppleLogo color="white" className="size-48 -mb-10" />
       </motion.div>
 
       <motion.div
