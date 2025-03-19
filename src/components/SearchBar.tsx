@@ -18,6 +18,7 @@ import {
   User,
   Calculator,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 interface App {
   name: string;
   icon: ReactNode;
@@ -80,12 +81,15 @@ export function SearchBar() {
       <AnimatePresence>
         {!isOpen && (
           <motion.div
-            className="absolute mt-4  left-1/2 z-50"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1, x: "-50%" }}
-            exit={{ y: 20, opacity: 0 }}
+            className={cn(
+              "absolute mt-4  left-1/2 z-50",
+              !isOpen && "opacity-0"
+            )}
+            initial={{ opacity: 0, x: "-50%" }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <motion.div
+            <div
               className="relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -93,6 +97,7 @@ export function SearchBar() {
             >
               <motion.div
                 className="flex items-center h-12 rounded-full bg-black/10 backdrop-blur-xl border border-white/20 hover:bg-black/20 overflow-hidden cursor-pointer"
+                initial={{ width: 48 }}
                 animate={{
                   width: isHovered ? 260 : 48,
                 }}
@@ -120,7 +125,6 @@ export function SearchBar() {
                 <motion.span
                   className="absolute  right-[0.8rem]"
                   transition={{
-                    type: "spring",
                     stiffness: 500,
                     damping: 30,
                   }}
@@ -128,7 +132,7 @@ export function SearchBar() {
                   <Search className="h-5 w-5  text-white/70" />
                 </motion.span>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
