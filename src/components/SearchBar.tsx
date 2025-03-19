@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { FolderArchive, Phone, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -61,10 +61,22 @@ const suggestedApps: App[] = [
 export function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  useEffect(() => {
+    const eventHandler = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "f") {
+        e.preventDefault(); // Prevent browser's default "Find" action
+        setIsOpen((prev) => !prev);
+      }
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
 
+    document.addEventListener("keydown", eventHandler);
+    return () => document.removeEventListener("keydown", eventHandler);
+  }, []);
   return (
     <div className="overflow-hidden">
-      {/* Animated Search Button */}
       <AnimatePresence>
         {!isOpen && (
           <motion.div

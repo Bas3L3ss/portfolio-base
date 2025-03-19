@@ -34,19 +34,24 @@ const PhoneUI = () => {
   };
 
   return (
-    <motion.div
-      className=" w-full  h-full bg-black flex flex-col items-center justify-center overflow-hidden   bg-white/20 dark:bg-black/20  relative touch-pan-y"
-      drag={!isRevealed ? "y" : false}
-      dragConstraints={{ top: 0, bottom: 0 }}
-      dragElastic={0.2}
-      onDragEnd={handleDragEnd}
-    >
+    <motion.div className=" w-full  h-full bg-black flex flex-col items-center justify-center overflow-hidden   bg-white/20 dark:bg-black/20  relative touch-pan-y">
+      {!isRevealed && (
+        <div className="absolute inset-0 opacity-15">
+          <NavBar />
+
+          <HomePage />
+        </div>
+      )}
       <AnimatePresence>
         {!isRevealed && (
           <motion.div
             className="absolute inset-0 bg-cover bg-center"
             initial={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -100 }}
+            drag={!isRevealed ? "y" : false}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
             transition={{
               type: "spring",
               stiffness: 300,
@@ -97,7 +102,7 @@ const PhoneUI = () => {
             }}
           >
             <div className="w-1/2 h-[94.5%] flex-shrink-0">
-              <HomePage />
+              <HomePage isRevealed />
             </div>
             <div className="w-1/2  h-full flex-shrink-0">
               <SettingsPage />

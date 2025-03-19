@@ -25,7 +25,7 @@ import { useTheme } from "next-themes";
 import { SearchBar } from "./SearchBar";
 import SocialWidget from "./MyselfWidget";
 import SpotifyWidget from "./SpotifyWidget";
-const HomePage = () => {
+const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
   const { theme } = useTheme();
   const [isHomeVisible, setIsHomeVisible] = useState(true);
@@ -106,6 +106,30 @@ const HomePage = () => {
       name: "DSA",
       icon: <GitGraphIcon className="" size={32} />,
     },
+    {
+      name: "System Design",
+      icon: <NetworkIcon className="" size={32} />,
+    },
+    {
+      name: "Testing",
+      icon: <DevIcons.Jest className="" size={32} />,
+    },
+    {
+      name: "DSA",
+      icon: <GitGraphIcon className="" size={32} />,
+    },
+    {
+      name: "System Design",
+      icon: <NetworkIcon className="" size={32} />,
+    },
+    {
+      name: "Testing",
+      icon: <DevIcons.Jest className="" size={32} />,
+    },
+    {
+      name: "DSA",
+      icon: <GitGraphIcon className="" size={32} />,
+    },
   ];
   const studyCasesApps: App[] = [];
   const projectApps: App[] = [];
@@ -119,6 +143,17 @@ const HomePage = () => {
     setActiveScreen(null);
     setIsHomeVisible(true);
   };
+
+  useEffect(() => {
+    const eventHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeScreen();
+      }
+    };
+
+    document.addEventListener("keyup", eventHandler);
+    return () => document.removeEventListener("keyup", eventHandler);
+  }, []);
 
   return (
     <div className="w-full h-full flex flex-col gap-4 p-4   relative overflow-hidden">
@@ -168,8 +203,7 @@ const HomePage = () => {
               ))}
             </motion.div>
           </div>
-
-          <SearchBar />
+          {isRevealed && <SearchBar />}
         </>
       )}
       {activeScreen === "about" && <AboutScreen onBack={closeScreen} />}

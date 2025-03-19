@@ -27,10 +27,10 @@ const AppIcon: React.FC<AppIconProps> = ({
     <Tooltip>
       <TooltipTrigger asChild>
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onClick}
-          className={cn(
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onClick}
+              className={cn(
             "flex flex-col items-center justify-center group",
             className
           )}

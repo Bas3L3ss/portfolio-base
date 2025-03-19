@@ -43,8 +43,12 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [batteryLevel, setBatteryLevel]);
 
+  const skipBootAnimation = () => {
+    setIsBooting(false);
+  };
+
   return (
-    <main className=" text-gray-900 min-h-screen">
+    <main className="text-gray-900 min-h-screen">
       <article className="flex flex-col items-center justify-between p-6 md:p-24 space-y-16">
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <h1 className="text-3xl font-extrabold text-indigo-700">
@@ -59,7 +63,7 @@ export default function Home() {
               }}
             />
           </h1>
-          <p className="text-xl text-gray-600 dark:text-white  ">
+          <p className="text-xl text-gray-600 dark:text-white">
             Welcome to my portfolio! I am a passionate developer with a love for
             creating beautiful and functional applications.
           </p>
@@ -86,6 +90,18 @@ export default function Home() {
         </div>
       </article>
       <Footer />
+
+      {/* Skip Boot Animation Button */}
+      {isBooting && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-3 shadow-lg z-50 text-sm transition-all duration-200 transform hover:scale-105"
+          onClick={skipBootAnimation}
+        >
+          Skip Intro
+        </motion.button>
+      )}
     </main>
   );
 }
