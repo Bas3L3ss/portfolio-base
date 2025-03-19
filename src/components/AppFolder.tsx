@@ -226,34 +226,39 @@ const AppFolder = ({
   };
 
   const renderNextPagePreview = () => {
-    if (
-      currentPage < totalPages - 1 &&
-      dragDirection === "left" &&
-      dragProgress > 0.2
-    ) {
+    if (currentPage < totalPages - 1 && dragDirection === "left") {
       const nextPageApps = apps.slice(
         (currentPage + 1) * APPS_PER_PAGE,
         (currentPage + 1) * APPS_PER_PAGE + APPS_PER_PAGE
       );
 
+      const translateX = dragProgress * -50;
+      const opacity = Math.min(0.7, dragProgress);
+
       return (
         <div
-          className="absolute top-0 left-full h-full w-full px-6 pt-6 opacity-50"
+          className="absolute top-0 left-full h-full w-full px-6 pt-6"
           style={{
-            transform: `translateX(${Math.min(80, dragProgress * 100)}px)`,
-            opacity: dragProgress * 0.3,
+            transform: `translateX(${translateX}px)`,
+            opacity: opacity,
+            pointerEvents: "none",
           }}
         >
           <div className="grid grid-cols-3 gap-4">
             {nextPageApps.map((app, index) => (
-              <div key={`next-${index}`} className="opacity-50">
-                <div className="w-14 h-14 rounded-2xl bg-gray-200/20 dark:bg-gray-700/20 flex items-center justify-center">
+              <motion.div
+                key={`next-${index}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: dragProgress > 0.1 ? 1 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gray-200/80 dark:bg-gray-700/80 flex items-center justify-center shadow-sm">
                   {app.icon}
                 </div>
                 <div className="text-xs text-center mt-1 truncate">
                   {app.name}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -263,30 +268,39 @@ const AppFolder = ({
   };
 
   const renderPrevPagePreview = () => {
-    if (currentPage > 0 && dragDirection === "right" && dragProgress > 0.2) {
+    if (currentPage > 0 && dragDirection === "right") {
       const prevPageApps = apps.slice(
         (currentPage - 1) * APPS_PER_PAGE,
         (currentPage - 1) * APPS_PER_PAGE + APPS_PER_PAGE
       );
 
+      const translateX = dragProgress * 50;
+      const opacity = Math.min(0.7, dragProgress);
+
       return (
         <div
-          className="absolute top-0 right-full h-full w-full px-6 pt-6 opacity-50"
+          className="absolute top-0 right-full h-full w-full px-6 pt-6"
           style={{
-            transform: `translateX(-${Math.min(80, dragProgress * 100)}px)`,
-            opacity: dragProgress * 0.3,
+            transform: `translateX(${translateX}px)`,
+            opacity: opacity,
+            pointerEvents: "none",
           }}
         >
           <div className="grid grid-cols-3 gap-4">
             {prevPageApps.map((app, index) => (
-              <div key={`prev-${index}`} className="opacity-50">
-                <div className="w-14 h-14 rounded-2xl bg-gray-200/20 dark:bg-gray-700/20 flex items-center justify-center">
+              <motion.div
+                key={`prev-${index}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: dragProgress > 0.1 ? 1 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gray-200/80 dark:bg-gray-700/80 flex items-center justify-center shadow-sm">
                   {app.icon}
                 </div>
                 <div className="text-xs text-center mt-1 truncate">
                   {app.name}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -296,7 +310,7 @@ const AppFolder = ({
   };
 
   return (
-    <div className="  cursor-pointer">
+    <div className="cursor-pointer">
       <motion.div
         ref={folderRef}
         onClick={handleOpen}
@@ -416,42 +430,44 @@ const AppFolder = ({
                   </motion.div>
                 )}
 
-                {/* Page previews */}
-                {renderPrevPagePreview()}
-                {renderNextPagePreview()}
+                <div className="relative w-full h-full overflow-hidden">
+                  {/* Page previews */}
+                  {renderPrevPagePreview()}
+                  {renderNextPagePreview()}
 
-                <motion.div
-                  className="grid grid-cols-3 gap-4 relative"
-                  animate={contentControls}
-                  key={`page-${currentPage}`}
-                >
-                  {getCurrentPageApps().map((app, index) => (
-                    <motion.div
-                      key={`app-${currentPage}-${index}`}
-                      initial={{ scale: 0.5, opacity: 0, y: 20 }}
-                      animate={{
-                        scale: 1,
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          type: "spring",
-                          damping: 20,
-                          stiffness: 300,
-                          delay: index * 0.03,
-                        },
-                      }}
-                    >
-                      <AppIcon
-                        className="p-0"
-                        name={app.name}
-                        icon={app.icon}
-                        onClick={() => {
-                          setIsOpen(false);
+                  <motion.div
+                    className="grid grid-cols-3 gap-4 relative"
+                    animate={contentControls}
+                    key={`page-${currentPage}`}
+                  >
+                    {getCurrentPageApps().map((app, index) => (
+                      <motion.div
+                        key={`app-${currentPage}-${index}`}
+                        initial={{ scale: 0.5, opacity: 0, y: 20 }}
+                        animate={{
+                          scale: 1,
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            type: "spring",
+                            damping: 20,
+                            stiffness: 300,
+                            delay: index * 0.03,
+                          },
                         }}
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                      >
+                        <AppIcon
+                          className="p-0"
+                          name={app.name}
+                          icon={app.icon}
+                          onClick={() => {
+                            setIsOpen(false);
+                          }}
+                        />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
 
                 {/* Page indicators */}
                 {totalPages > 1 && (
