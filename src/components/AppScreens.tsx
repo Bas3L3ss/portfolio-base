@@ -166,6 +166,28 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               </Markdown>
             </div>
           </motion.div>
+          <motion.div
+            variants={itemVariants}
+            className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm"
+          >
+            <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+              Personal Information
+            </h3>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
+              <li className="flex items-center">
+                <span className="mr-3 text-blue-500">🎂</span>
+                <span>Birthday: 6 Sep 2007</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-blue-500">🎓</span>
+                <span>Education: LTT College for Associate Degree</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-blue-500">🌍</span>
+                <span>Location: Vietnam</span>
+              </li>
+            </ul>
+          </motion.div>
 
           <motion.div
             variants={itemVariants}
@@ -215,7 +237,6 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               ))}
             </ul>
           </motion.div>
-          {/* Soft skills Card */}
           <motion.div
             variants={itemVariants}
             className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm"
@@ -224,36 +245,33 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               Soft Skills
             </h3>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
-              <li className="flex items-center">
-                <span className="mr-3 text-green-500">
-                  <FaUsers />
-                </span>
-                <span>Strong teamwork and collaboration</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-3 text-yellow-500">
-                  <FaLightbulb />
-                </span>
-                <span>Critical thinking and problem-solving</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-3 text-blue-500">
-                  <FaComments />
-                </span>
-                <span>Effective communication and leadership</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-3 text-red-500">
-                  <FaClock />
-                </span>
-                <span>Time management and adaptability</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-3 text-purple-500">
-                  <FaBrain />
-                </span>
-                <span>Self-learning and continuous improvement</span>
-              </li>
+              {[
+                {
+                  icon: <FaUsers className="mr-3 text-green-500" />,
+                  text: "Strong teamwork and collaboration",
+                },
+                {
+                  icon: <FaLightbulb className="mr-3 text-yellow-500" />,
+                  text: "Critical thinking and problem-solving",
+                },
+                {
+                  icon: <FaComments className="mr-3 text-blue-500" />,
+                  text: "Effective communication and leadership",
+                },
+                {
+                  icon: <FaClock className="mr-3 text-red-500" />,
+                  text: "Time management and adaptability",
+                },
+                {
+                  icon: <FaBrain className="mr-3 text-purple-500" />,
+                  text: "Self-learning and continuous improvement",
+                },
+              ].map((item, index) => (
+                <li key={index} className="flex items-center">
+                  {item.icon}
+                  <span>{item.text}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
           {/* Philosophy Card */}

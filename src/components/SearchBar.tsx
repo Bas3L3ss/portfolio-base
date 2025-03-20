@@ -175,11 +175,8 @@ export function SearchBar({ openScreen }: { openScreen: (s: string) => void }) {
       <AnimatePresence>
         {!isOpen && (
           <motion.div
-            className={cn(
-              "absolute mt-1  left-1/2 z-50",
-              !isOpen && "opacity-0"
-            )}
-            initial={{ opacity: 0, x: "-50%" }}
+            className={cn("absolute    left-1/2 z-50", !isOpen && "opacity-0")}
+            initial={{ opacity: 0, x: "-50%", y: "-40%" }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
