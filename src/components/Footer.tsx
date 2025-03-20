@@ -1,3 +1,4 @@
+import { GITHUB_URL, LINKEDIN_URL } from "@/constants";
 import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
@@ -6,7 +7,7 @@ const Footer = () => {
       <h2 className="text-2xl font-bold mb-4">Pham Thien Hung</h2>
       <div className="flex justify-center space-x-6 mb-4">
         <a
-          href="https://linkedin.com"
+          href={LINKEDIN_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-indigo-600 transition duration-300"
@@ -14,7 +15,7 @@ const Footer = () => {
           <Linkedin className="text-3xl" />
         </a>
         <a
-          href="https://github.com"
+          href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-gray-500 transition duration-300"

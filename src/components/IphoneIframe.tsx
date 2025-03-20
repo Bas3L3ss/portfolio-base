@@ -6,7 +6,7 @@ interface IPhoneFrameProps {
 
 const IPhoneFrame: React.FC<IPhoneFrameProps> = ({ children }) => {
   return (
-    <div id="phone" className="relative mx-auto">
+    <main id="phone" className="relative mx-auto">
       {/* Device Frame */}
       <div
         className={`
@@ -59,7 +59,7 @@ const IPhoneFrame: React.FC<IPhoneFrameProps> = ({ children }) => {
       </div>
       {/* Subtle Device Shadow */}
       <div className="absolute inset-0 rounded-[55px] shadow-lg opacity-20"></div>
-    </div>
+    </main>
   );
 };
 

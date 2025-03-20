@@ -15,7 +15,7 @@ export default function SocialWidget() {
 
           {/* Notification Badge */}
           <div className="absolute top-3 right-3 bg-yellow-400 w-6 h-6 rounded-full flex items-center justify-center">
-            <span className="text-black text-sm font-bold">5</span>
+            <span className="text-black text-sm font-bold">3</span>
           </div>
         </div>
 
@@ -32,12 +32,12 @@ export default function SocialWidget() {
 
             <div className="flex-1">
               <h3 className="text-white font-semibold">Baseless</h3>
-              <p className="text-white/90 text-sm">idk dudet</p>
+              <p className="text-white/90 text-sm">Let&apos;s contact</p>
             </div>
           </div>
         </div>
       </div>
-      <p className="  mt-2 text-sm text-white text-center ">Locket</p>
+      <p className="  mt-2 text-sm text-white text-center ">Me</p>
     </div>
   );
 }

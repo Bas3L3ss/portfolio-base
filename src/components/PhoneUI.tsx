@@ -34,7 +34,7 @@ const PhoneUI = () => {
   };
 
   return (
-    <motion.div className=" w-full  h-full bg-black flex flex-col items-center justify-center overflow-hidden   bg-white/20 dark:bg-black/20  relative touch-pan-y">
+    <section className=" w-full  h-full bg-black flex flex-col items-center justify-center overflow-hidden   bg-white/20 dark:bg-black/20  relative touch-pan-y">
       {!isRevealed && (
         <div className="absolute inset-0 opacity-15">
           <NavBar />
@@ -74,7 +74,6 @@ const PhoneUI = () => {
           pointerEvents: isRevealed ? "auto" : "none",
         }}
         transition={{
-          type: "spring",
           stiffness: 300,
           damping: 30,
         }}
@@ -85,7 +84,6 @@ const PhoneUI = () => {
           {...(isDraggable && {
             drag: isRevealed ? "x" : false,
             dragConstraints: { left: 0, right: 0 },
-            dragElastic: 0.2,
             onDragEnd: handleDragEnd,
           })}
         >
@@ -96,7 +94,6 @@ const PhoneUI = () => {
               x: `-${currentPage * 50}%`,
             }}
             transition={{
-              type: "spring",
               stiffness: 300,
               damping: 30,
             }}
@@ -110,7 +107,7 @@ const PhoneUI = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-    </motion.div>
+    </section>
   );
 };
 

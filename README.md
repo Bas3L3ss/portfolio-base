@@ -1,6 +1,1 @@
-PROBLEM TO ADDRESS:
-add authentic data, do some code splitting and more, some chores are needed but things are suffice for now
-
-- add actual app images
-- responsive design refine
-- light house 100% performance please
+Driven **Full-Stack Software Engineer** specializing in backend system design and high-performance architecture. Experienced in **building scalable and maintainable applications**, optimizing infrastructure, and solving complex technical challenges. **Seeking a remote internship** to further develop skills and contribute to impactful projects. Also, having the ambition to proceed to the world of AI.

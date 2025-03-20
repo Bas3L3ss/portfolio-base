@@ -14,17 +14,15 @@ const AppScreen = ({
   onBack: () => void;
   isFullscreen?: boolean;
 }) => (
-  <motion.div
+  <motion.section
     initial={{ scale: 0.9, opacity: 0 }}
     animate={{ scale: 1, opacity: 1 }}
     exit={{ scale: 0.9, opacity: 0 }}
     transition={{ type: "spring", damping: 25, stiffness: 300 }}
-    className={`absolute inset-0 bg-white dark:bg-black rounded-t-xl overflow-hidden ${
+    className={`w-full absolute inset-0 bg-white dark:bg-black rounded-t-xl overflow-hidden ${
       isFullscreen ? "z-30" : ""
     }`}
   >
-    <div className="h-6 w-full bg-white dark:bg-black"></div>
-
     <div className="flex flex-col h-full">
       <div className="flex items-center px-4 py-2 border-b border-gray-200 dark:border-gray-800">
         {onBack && (
@@ -40,12 +38,8 @@ const AppScreen = ({
       </div>
 
       <ScrollArea className="flex-1 overflow-auto">{children}</ScrollArea>
-
-      <div className="h-6 flex justify-center items-center bg-white dark:bg-black">
-        <div className="w-24 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-      </div>
     </div>
-  </motion.div>
+  </motion.section>
 );
 
 export default AppScreen;
