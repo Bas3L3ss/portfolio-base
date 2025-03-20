@@ -33,6 +33,7 @@ import {
   FaClock,
   FaBrain,
 } from "react-icons/fa";
+import Resume from "./icon/Resume";
 
 const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
   const experiences = [
@@ -180,7 +181,15 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               </li>
               <li className="flex items-center">
                 <span className="mr-3 text-blue-500">🌍</span>
-                <span>Location: Vietnam</span>
+                <span>Location: Vietnam, HCMC, Tan Binh</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-blue-500">
+                  <Resume />
+                </span>
+                <a href="/cvs.pdf" download="cvs.pdf">
+                  My Resume
+                </a>
               </li>
             </ul>
           </motion.div>
@@ -194,10 +203,6 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
             </h3>
             <ul className="space-y-3">
               {[
-                {
-                  icon: <FaMapMarkerAlt />,
-                  text: "Based in Vietnam",
-                },
                 {
                   icon: <FaLaptopCode />,
                   text: "Current expertise is Full Stack Developer",
@@ -216,12 +221,12 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
                 },
 
                 {
-                  icon: <Linux size={32} />,
-                  text: "Linux ubuntu user",
+                  icon: <Moon />,
+                  text: "Love dark mode :)",
                 },
                 {
-                  icon: <Moon />,
-                  text: "And i love dark mode :)",
+                  icon: <Linux size={20} />,
+                  text: "Linux Ubuntu user",
                 },
               ].map((item, index) => (
                 <li key={index} className="flex items-center text-sm">
