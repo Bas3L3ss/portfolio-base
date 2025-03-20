@@ -82,7 +82,7 @@ export function SearchBar() {
         {!isOpen && (
           <motion.div
             className={cn(
-              "absolute mt-4  left-1/2 z-50",
+              "absolute mt-1  left-1/2 z-50",
               !isOpen && "opacity-0"
             )}
             initial={{ opacity: 0, x: "-50%" }}

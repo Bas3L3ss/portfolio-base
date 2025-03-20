@@ -14,8 +14,10 @@ const APPS_PER_PAGE = 9;
 const AppFolder = ({
   folderName,
   apps,
+  openScreen,
 }: {
   folderName: string;
+  openScreen: (app: string) => void;
   apps: App[];
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -52,7 +54,7 @@ const AppFolder = ({
 
   useEffect(() => {
     const eventHandler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.ctrlKey && e.key === "Escape") {
         setIsOpen(false);
       }
     };
@@ -461,7 +463,7 @@ const AppFolder = ({
                           name={app.name}
                           icon={app.icon}
                           onClick={() => {
-                            setIsOpen(false);
+                            openScreen(app.name.toLowerCase());
                           }}
                         />
                       </motion.div>

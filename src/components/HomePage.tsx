@@ -25,9 +25,24 @@ import { useTheme } from "next-themes";
 import { SearchBar } from "./SearchBar";
 import SocialWidget from "./MyselfWidget";
 import SpotifyWidget from "./SpotifyWidget";
+import {
+  AnalyticsScreen,
+  CloudComputingScreen,
+  DatabasesScreen,
+  DevsOpScreen,
+  DSAScreen,
+  FrameworkScreen,
+  IDEScreen,
+  LanguagesScreen,
+  ServerRuntimeScreen,
+  SystemDesignScreen,
+  TestingScreen,
+  VersioningScreen,
+} from "./SkillScreens";
+import { SiLeetcode } from "react-icons/si";
+
 const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
-  const { theme } = useTheme();
   const [isHomeVisible, setIsHomeVisible] = useState(true);
   const { setIsDraggable } = useAppStore();
 
@@ -64,71 +79,54 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
 
   const skillsApps: App[] = [
     {
-      name: "Nextjs",
+      name: "Languages",
+      icon: <DevIcons.TypeScript className="" size={32} />,
+    },
+    {
+      name: "Frameworks",
       icon: <DevIcons.NextJs className="" size={32} />,
     },
     {
-      name: "Docker",
-      icon: <DevIcons.Docker size={32} />,
+      name: "Backend",
+      icon: <DevIcons.NodeJs size={32} />,
+    },
+    {
+      name: "DevsOp",
+      icon: <DevIcons.Kubernetes size={32} />,
+    },
+    {
+      name: "Versioning",
+      icon: <DevIcons.Git size={32} />,
     },
 
     {
       name: "Cloud computing",
-      icon: <DevIcons.GoogleCloud className="" size={32} />,
+      icon: <DevIcons.GoogleCloud size={32} />,
     },
     {
-      name: "PostgresSQL",
+      name: "Databases",
       icon: <DevIcons.PostgreSQL className="" size={32} />,
-    },
-    {
-      name: "ExpressJS",
-      icon:
-        theme != "dark" ? (
-          <DevIcons.ExpressJsDark className="" size={32} />
-        ) : (
-          <DevIcons.ExpressJsLight className="" size={32} />
-        ),
     },
 
     {
-      name: "Redis",
-      icon: <DevIcons.Redis className="" size={32} />,
-    },
-    {
       name: "System Design",
       icon: <NetworkIcon className="" size={32} />,
     },
     {
       name: "Testing",
-      icon: <DevIcons.Jest className="" size={32} />,
+      icon: <DevIcons.Playwright className="" size={32} />,
     },
     {
       name: "DSA",
-      icon: <GitGraphIcon className="" size={32} />,
+      icon: <SiLeetcode className="" size={32} />,
     },
     {
-      name: "System Design",
-      icon: <NetworkIcon className="" size={32} />,
+      name: "Analytics",
+      icon: <DevIcons.Grafana className="" size={32} />,
     },
     {
-      name: "Testing",
-      icon: <DevIcons.Jest className="" size={32} />,
-    },
-    {
-      name: "DSA",
-      icon: <GitGraphIcon className="" size={32} />,
-    },
-    {
-      name: "System Design",
-      icon: <NetworkIcon className="" size={32} />,
-    },
-    {
-      name: "Testing",
-      icon: <DevIcons.Jest className="" size={32} />,
-    },
-    {
-      name: "DSA",
-      icon: <GitGraphIcon className="" size={32} />,
+      name: "IDEs",
+      icon: <DevIcons.VisualStudioCode className="" size={32} />,
     },
   ];
   const studyCasesApps: App[] = [];
@@ -136,7 +134,6 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
 
   const openScreen = (screenId: string | null) => {
     setActiveScreen(screenId);
-    setIsHomeVisible(false);
   };
 
   const closeScreen = () => {
@@ -175,9 +172,21 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
                     onClick={() => openScreen(app.id)}
                   />
                 ))}
-                <AppFolder apps={skillsApps} folderName="Tech skills" />
-                <AppFolder apps={studyCasesApps} folderName="Study cases" />
-                <AppFolder apps={projectApps} folderName="Projects" />
+                <AppFolder
+                  openScreen={openScreen}
+                  apps={skillsApps}
+                  folderName="Tech skills"
+                />
+                <AppFolder
+                  openScreen={openScreen}
+                  apps={studyCasesApps}
+                  folderName="Study cases"
+                />
+                <AppFolder
+                  openScreen={openScreen}
+                  apps={projectApps}
+                  folderName="Projects"
+                />
               </motion.div>
               <SpotifyWidget />
             </div>
@@ -203,7 +212,7 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
               ))}
             </motion.div>
           </div>
-          {isRevealed && <SearchBar />}
+          {isRevealed && <>{!activeScreen && <SearchBar />}</>}
         </>
       )}
       {activeScreen === "about" && <AboutScreen onBack={closeScreen} />}
@@ -215,6 +224,28 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
       )}
       {activeScreen === "blogs" && <BlogScreen onBack={closeScreen} />}
       {activeScreen === "contact" && <CTAScreen onBack={closeScreen} />}
+      {activeScreen === "languages" && <LanguagesScreen onBack={closeScreen} />}
+      {activeScreen === "frameworks" && (
+        <FrameworkScreen onBack={closeScreen} />
+      )}
+      {activeScreen === "backend" && (
+        <ServerRuntimeScreen onBack={closeScreen} />
+      )}
+      {activeScreen === "devsop" && <DevsOpScreen onBack={closeScreen} />}
+      {activeScreen === "versioning" && (
+        <VersioningScreen onBack={closeScreen} />
+      )}
+      {activeScreen === "cloud computing" && (
+        <CloudComputingScreen onBack={closeScreen} />
+      )}
+      {activeScreen === "databases" && <DatabasesScreen onBack={closeScreen} />}
+      {activeScreen === "testing" && <TestingScreen onBack={closeScreen} />}
+      {activeScreen === "ides" && <IDEScreen onBack={closeScreen} />}
+      {activeScreen === "analytics" && <AnalyticsScreen onBack={closeScreen} />}
+      {activeScreen === "dsa" && <DSAScreen onBack={closeScreen} />}
+      {activeScreen === "system design" && (
+        <SystemDesignScreen onBack={closeScreen} />
+      )}
     </div>
   );
 };
