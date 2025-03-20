@@ -50,11 +50,14 @@ import {
   CSharp,
   Django,
   Flutter,
+  GraphQL,
+  NodeJs,
   PHP,
   Playwright,
   Redis,
   RustLight,
   Supabase,
+  TRPC,
   VisualStudioCode,
   Vitest,
 } from "developer-icons";
@@ -265,6 +268,19 @@ export const ServerRuntimeScreen: React.FC<ScreenProps> = ({ onBack }) => {
       experience: "3+ years",
     },
     {
+      name: "Rest API",
+      icon: <SiNodedotjs className="text-green-600" />,
+      level: "Advanced",
+      experience: "3+ years",
+    },
+    {
+      name: "GraphQL",
+      icon: <GraphQL size={32} />,
+      level: "Practical",
+      experience: "1 project",
+    },
+
+    {
       name: "Rabbit MQ",
       icon: <SiRabbitmq />,
       level: "Intermediate",
@@ -282,6 +298,12 @@ export const ServerRuntimeScreen: React.FC<ScreenProps> = ({ onBack }) => {
       icon: <Django size={32} />,
       level: "Intermediate",
       experience: "1 project",
+    },
+    {
+      name: "tRPC",
+      icon: <TRPC size={32} />,
+      level: "Practical",
+      experience: "Researching",
     },
     {
       name: "Apache Kafka",

@@ -5,7 +5,6 @@ import {
   Briefcase,
   User,
   StarIcon,
-  GitGraphIcon,
   Phone,
   Newspaper,
 } from "lucide-react";
@@ -21,7 +20,6 @@ import WeatherWidget from "./WeatherWidget";
 import { useAppStore } from "@/lib/store";
 import AppFolder, { App } from "./AppFolder";
 import * as DevIcons from "developer-icons";
-import { useTheme } from "next-themes";
 import { SearchBar } from "./SearchBar";
 import SocialWidget from "./MyselfWidget";
 import SpotifyWidget from "./SpotifyWidget";
@@ -212,7 +210,9 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
               ))}
             </motion.div>
           </div>
-          {isRevealed && <>{!activeScreen && <SearchBar />}</>}
+          {isRevealed && (
+            <>{!activeScreen && <SearchBar openScreen={openScreen} />}</>
+          )}
         </>
       )}
       {activeScreen === "about" && <AboutScreen onBack={closeScreen} />}

@@ -1,5 +1,11 @@
 import { ReactNode, useEffect, useState } from "react";
-import { FolderArchive, Phone, Search } from "lucide-react";
+import {
+  Database,
+  FolderArchive,
+  NetworkIcon,
+  Phone,
+  Search,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Command,
@@ -19,47 +25,135 @@ import {
   Calculator,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Grafana,
+  Kubernetes,
+  NodeJs,
+  Playwright,
+  TypeScript,
+  VisualStudioCode,
+} from "developer-icons";
+import { FaAws } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 interface App {
   name: string;
   icon: ReactNode;
-  onClick: () => void;
+  to: string;
 }
 const appsToSearch: App[] = [
   {
     name: "About me",
+    to: "about",
     icon: <User className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
   },
   {
     name: "Projects",
+    to: "projects",
     icon: <FolderArchive className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
+  },
+  {
+    name: "Experience",
+    to: "experience",
+    icon: <Calendar className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Testimonials",
+    to: "testimonials",
+    icon: <Smile className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Blogs",
+    to: "blogs",
+    icon: <CreditCard className="h-4 w-4 shrink-0 text-white/40" />,
   },
   {
     name: "Contact me",
+    to: "contact",
     icon: <Phone className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
+  },
+  {
+    name: "Programming Languages",
+    to: "languages",
+    icon: <Calculator className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Frameworks & Libraries",
+    to: "frameworks",
+    icon: <Settings className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Backend Development",
+    to: "backend",
+    icon: <NodeJs className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "DevOps",
+    to: "devsop",
+    icon: <Kubernetes className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Version Control",
+    to: "versioning",
+    icon: <FolderArchive className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Cloud Computing",
+    to: "cloud computing",
+    icon: <FaAws className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Databases",
+    to: "databases",
+    icon: <Database className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Testing",
+    to: "testing",
+    icon: <Playwright className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "IDEs & Tools",
+    to: "ides",
+    icon: <VisualStudioCode className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Analytics & Tracking",
+    to: "analytics",
+    icon: <Grafana className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "Data Structures & Algorithms",
+    to: "dsa",
+    icon: <SiLeetcode className="h-4 w-4 shrink-0 text-white/40" />,
+  },
+  {
+    name: "System Design",
+    to: "system design",
+    icon: <NetworkIcon className="h-4 w-4 shrink-0 text-white/40" />,
   },
 ];
+
 const suggestedApps: App[] = [
   {
     name: "About me",
     icon: <User className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
-  },
-  {
-    name: "Projects",
-    icon: <FolderArchive className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
+    to: "about",
   },
   {
     name: "Contact me",
     icon: <Phone className="h-4 w-4 shrink-0 text-white/40" />,
-    onClick: () => {},
+
+    to: "contact",
+  },
+  {
+    name: "Programming Languages",
+    icon: <TypeScript className="h-4 w-4 shrink-0 text-white/40" />,
+
+    to: "languages",
   },
 ];
 
-export function SearchBar() {
+export function SearchBar({ openScreen }: { openScreen: (s: string) => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   useEffect(() => {
@@ -174,6 +268,9 @@ export function SearchBar() {
                     {suggestedApps.map((app) => {
                       return (
                         <CommandItem
+                          onSelect={() => {
+                            openScreen(app.to);
+                          }}
                           key={app.name + "-suggested"}
                           className="hover:bg-white/10"
                         >
@@ -191,6 +288,9 @@ export function SearchBar() {
                     {appsToSearch.map((app) => {
                       return (
                         <CommandItem
+                          onSelect={() => {
+                            openScreen(app.to);
+                          }}
                           key={app.name + "-search"}
                           className="hover:bg-white/10"
                         >
