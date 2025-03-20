@@ -92,18 +92,14 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   return (
     <AppScreen title="About Me" onBack={onBack}>
       <div className="flex flex-col h-full overflow-y-auto bg-gray-50 dark:bg-gray-900   ">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col items-center pt-6 pb-4 border-b border-gray-200 dark:border-gray-800"
-        >
+        <motion.div className="flex flex-col items-center pt-6 pb-4 border-b border-gray-200 dark:border-gray-800">
           <div className="relative w-24 h-24 mb-4">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 opacity-20 blur-md" />
             <div className="relative w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
@@ -237,6 +233,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               ))}
             </ul>
           </motion.div>
+
           <motion.div
             variants={itemVariants}
             className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm"
