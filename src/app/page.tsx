@@ -8,6 +8,7 @@ import BootAnimation from "@/components/BootAnimation";
 import Footer from "@/components/Footer";
 import Typewriter from "typewriter-effect";
 import { useAppStore } from "@/lib/store";
+import ThemeToggleButton from "@/components/ThemeToggleButton";
 
 export default function Home() {
   const [isBooting, setIsBooting] = useState(true);
@@ -92,7 +93,7 @@ export default function Home() {
       <Footer />
 
       {/* Skip Boot Animation Button */}
-      {isBooting && (
+      {isBooting ? (
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -101,6 +102,8 @@ export default function Home() {
         >
           Skip Intro
         </motion.button>
+      ) : (
+        <ThemeToggleButton />
       )}
     </main>
   );

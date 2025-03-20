@@ -6,10 +6,9 @@ import { useAppStore } from "@/lib/store";
 import { ChevronUp } from "lucide-react";
 import NavBar from "./NavBar";
 import HomePage from "./HomePage";
-import SettingsPage from "./SettingPage";
 
 const PhoneUI = () => {
-  const { currentPage, setCurrentPage, isDraggable } = useAppStore();
+  const { currentPage, setCurrentPage } = useAppStore();
   const [isRevealed, setIsRevealed] = useState(false);
 
   const handleDragEnd = (
@@ -79,31 +78,9 @@ const PhoneUI = () => {
         }}
       >
         <NavBar />
-        <motion.div
-          className="w-full h-[calc(100%)]"
-          {...(isDraggable && {
-            drag: isRevealed ? "x" : false,
-            dragConstraints: { left: 0, right: 0 },
-            onDragEnd: handleDragEnd,
-          })}
-        >
-          <motion.div
-            className="flex h-full"
-            style={{ width: "200%" }}
-            animate={{
-              x: `-${currentPage * 50}%`,
-            }}
-            transition={{
-              stiffness: 300,
-              damping: 30,
-            }}
-          >
-            <div className="w-1/2 h-[94.5%] flex-shrink-0">
-              <HomePage isRevealed />
-            </div>
-            <div className="w-1/2  h-full flex-shrink-0">
-              <SettingsPage />
-            </div>
+        <motion.div className="w-full h-[calc(100%)]">
+          <motion.div className="flex h-full">
+            <HomePage isRevealed />
           </motion.div>
         </motion.div>
       </motion.div>

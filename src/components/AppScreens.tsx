@@ -7,9 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AppScreen from "./AppScreen";
-import { ChevronRight, Github, LinkedinIcon, Mail, Phone } from "lucide-react";
+import {
+  ChevronRight,
+  Github,
+  LinkedinIcon,
+  Mail,
+  Moon,
+  Phone,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { LinkedIn } from "developer-icons";
+import { LinkedIn, Linux } from "developer-icons";
 import BlogCard from "./BlogCard";
 import Markdown from "react-markdown";
 import { GITHUB_URL, LINKEDIN_URL } from "@/constants";
@@ -20,6 +27,11 @@ import {
   FaAward,
   FaGraduationCap,
   FaRocket,
+  FaUsers,
+  FaLightbulb,
+  FaComments,
+  FaClock,
+  FaBrain,
 } from "react-icons/fa";
 
 const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
@@ -86,7 +98,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <AppScreen title="About Me" onBack={onBack}>
-      <div className="flex flex-col h-full overflow-y-auto bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col h-full overflow-y-auto bg-gray-50 dark:bg-gray-900  pb-9">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,7 +117,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
             Pham Thien Hung
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            Full-Stack Engineer | AI Enthusiast | DevOps Explorer
+            Full-Stack Engineer | Aspiring AI Systems Engineer
           </p>
           <div className="flex space-x-4 mt-2">
             <a
@@ -131,7 +143,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
 
         {/* Content Sections */}
         <motion.div
-          className="p-4 space-y-6"
+          className="p-4  space-y-6 "
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -163,54 +175,91 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
               Quick Facts
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-center text-sm">
-                <span className="mr-3 text-blue-500">
-                  <FaMapMarkerAlt />
-                </span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  Based in Vietnam
-                </span>
-              </li>
-              <li className="flex items-center text-sm">
-                <span className="mr-3 text-blue-500">
-                  <FaLaptopCode />
-                </span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  Current role: Full Stack Developer
-                </span>
-              </li>
-              <li className="flex items-center text-sm">
-                <span className="mr-3 text-blue-500">
-                  <FaAward />
-                </span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  DSA expertise: Solved 100+ Leetcode problems
-                </span>
-              </li>
-              <li className="flex items-center text-sm">
-                <span className="mr-3 text-blue-500">
-                  <FaGraduationCap />
-                </span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  System design: Have tackled and researched multiple aspects of
-                  software architecture
-                </span>
-              </li>
-              <li className="flex items-center text-sm">
-                <span className="mr-3 text-blue-500">
-                  <FaRocket />
-                </span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  Goal: Build popular software from scratch
-                </span>
-              </li>
+              {[
+                {
+                  icon: <FaMapMarkerAlt />,
+                  text: "Based in Vietnam",
+                },
+                {
+                  icon: <FaLaptopCode />,
+                  text: "Current expertise is Full Stack Developer",
+                },
+                {
+                  icon: <FaAward />,
+                  text: "I've grinded 100+ Leetcode problems",
+                },
+                {
+                  icon: <FaGraduationCap />,
+                  text: "Have tackled and researched multiple aspects of software architecture",
+                },
+                {
+                  icon: <FaRocket />,
+                  text: "Simply enjoy building hard software from scratch",
+                },
+
+                {
+                  icon: <Linux size={32} />,
+                  text: "Linux ubuntu user",
+                },
+                {
+                  icon: <Moon />,
+                  text: "And i love dark mode :)",
+                },
+              ].map((item, index) => (
+                <li key={index} className="flex items-center text-sm">
+                  <span className="mr-3 text-blue-500">{item.icon}</span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    {item.text}
+                  </span>
+                </li>
+              ))}
             </ul>
           </motion.div>
-
-          {/* Philosophy Card */}
+          {/* Soft skills Card */}
           <motion.div
             variants={itemVariants}
             className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm"
+          >
+            <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+              Soft Skills
+            </h3>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-sm">
+              <li className="flex items-center">
+                <span className="mr-3 text-green-500">
+                  <FaUsers />
+                </span>
+                <span>Strong teamwork and collaboration</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-yellow-500">
+                  <FaLightbulb />
+                </span>
+                <span>Critical thinking and problem-solving</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-blue-500">
+                  <FaComments />
+                </span>
+                <span>Effective communication and leadership</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-red-500">
+                  <FaClock />
+                </span>
+                <span>Time management and adaptability</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3 text-purple-500">
+                  <FaBrain />
+                </span>
+                <span>Self-learning and continuous improvement</span>
+              </li>
+            </ul>
+          </motion.div>
+          {/* Philosophy Card */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white dark:bg-gray-800 rounded-xl p-4  shadow-sm "
           >
             <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
               Philosophy
@@ -363,7 +412,6 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
   return (
     <AppScreen onBack={onBack} title="Contact">
       <div className="max-w-md mx-auto px-4 py-6">
-        {/* Contact Cards */}
         <div className="rounded-xl overflow-hidden mb-6 bg-white/10 backdrop-blur-md">
           <a
             href="mailto:phamthen.hun060906@gmail.com"
@@ -371,15 +419,17 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
             aria-label="Email me"
           >
             <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
-              <Mail className="h-5 w-5 text-blue-400" />
+              <Mail className="h-5 w-5 text-blue-400 dark:text-blue-300" />
             </div>
             <div className="flex-1">
-              <div className="text-xs text-gray-400">Email</div>
-              <div className="text-sm font-medium text-white">
+              <div className="text-xs text-gray-600 dark:text-gray-400">
+                Email
+              </div>
+              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 phamthen.hun060907@gmail.com
               </div>
             </div>
-            <ChevronRight className="h-4 w-4 text-gray-400" />
+            <ChevronRight className="h-4 w-4 text-gray-600 dark:text-gray-400" />
           </a>
 
           <a
@@ -388,20 +438,25 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
             aria-label="Call me"
           >
             <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-4">
-              <Phone className="h-5 w-5 text-green-400" />
+              <Phone className="h-5 w-5 text-green-400 dark:text-green-300" />
             </div>
             <div className="flex-1">
-              <div className="text-xs text-gray-400">Phone</div>
-              <div className="text-sm font-medium text-white">0865974700</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">
+                Phone
+              </div>
+              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                0865974700
+              </div>
             </div>
-            <ChevronRight className="h-4 w-4 text-gray-400" />
+            <ChevronRight className="h-4 w-4 text-gray-600 dark:text-gray-400" />
           </a>
         </div>
 
-        {/* Message Form */}
         <div className="rounded-xl overflow-hidden bg-white/10 backdrop-blur-md mb-6">
           <div className="p-4 border-b border-gray-700/30">
-            <h3 className="text-sm font-medium text-white">Send a Message</h3>
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Send a Message
+            </h3>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
@@ -410,7 +465,7 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
                 {...register("email")}
                 placeholder="Your email"
                 type="email"
-                className="w-full bg-gray-800/50 border-0 focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500 text-white rounded-lg"
+                className="w-full bg-gray-800/50 border-0 focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500 text-gray-900 dark:text-gray-100 rounded-lg"
               />
               {errors.email && (
                 <p className="text-red-400 text-xs mt-1">
@@ -424,7 +479,7 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
                 {...register("message")}
                 placeholder="Your message"
                 rows={4}
-                className="w-full bg-gray-800/50 border-0 focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500 text-white rounded-lg"
+                className="w-full bg-gray-800/50 border-0 focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500 text-gray-900 dark:text-gray-100 rounded-lg"
               />
               {errors.message && (
                 <p className="text-red-400 text-xs mt-1">
@@ -462,10 +517,11 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
           </form>
         </div>
 
-        {/* Social Links */}
         <div className="rounded-xl overflow-hidden bg-white/10 backdrop-blur-md">
           <div className="p-4 border-b border-gray-700/30">
-            <h3 className="text-sm font-medium text-white">Connect with me</h3>
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Connect with me
+            </h3>
           </div>
 
           <div className="p-4 flex justify-around">
@@ -486,7 +542,7 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
               className="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center hover:bg-gray-700/50 transition-colors"
               aria-label="LinkedIn"
             >
-              <LinkedIn className="h-6 w-6 text-blue-400" />
+              <LinkedIn className="h-6 w-6 text-blue-400 dark:text-blue-300" />
             </a>
           </div>
         </div>
@@ -494,6 +550,7 @@ function CTAScreen({ onBack }: { onBack: () => void }) {
     </AppScreen>
   );
 }
+
 function BlogScreen({ onBack }: { onBack: () => void }) {
   const blogs = [
     // {
