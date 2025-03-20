@@ -98,7 +98,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <AppScreen title="About Me" onBack={onBack}>
-      <div className="flex flex-col h-full overflow-y-auto bg-gray-50 dark:bg-gray-900  pb-9">
+      <div className="flex flex-col h-full overflow-y-auto bg-gray-50 dark:bg-gray-900   ">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

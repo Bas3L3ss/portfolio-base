@@ -65,8 +65,8 @@ export default function Home() {
             />
           </h1>
           <p className="text-xl text-gray-600 dark:text-white">
-            Welcome to my portfolio! I am a passionate developer with a love for
-            creating beautiful and functional applications.
+            Welcome to my portfolio! Tap on the iPhone to explore and get to
+            know me better!
           </p>
         </div>
         <div className="w-full max-w-[375px]">

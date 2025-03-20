@@ -7,6 +7,8 @@ import {
   StarIcon,
   Phone,
   Newspaper,
+  FlaskConical,
+  Apple,
 } from "lucide-react";
 import {
   CTAScreen,
@@ -32,12 +34,14 @@ import {
   FrameworkScreen,
   IDEScreen,
   LanguagesScreen,
+  OnResearchScreen,
   ServerRuntimeScreen,
   SystemDesignScreen,
   TestingScreen,
   VersioningScreen,
 } from "./SkillScreens";
 import { SiLeetcode } from "react-icons/si";
+import Image from "next/image";
 
 const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
   const [activeScreen, setActiveScreen] = useState<string | null>(null);
@@ -128,7 +132,35 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
     },
   ];
   const studyCasesApps: App[] = [];
-  const projectApps: App[] = [];
+  const projectApps: App[] = [
+    {
+      name: "Slack Clone",
+      icon: <DevIcons.Slack className="" size={32} />,
+      link: "https://github.com/Bas3L3ss/slackzz-clone",
+    },
+    {
+      name: "Event Platform",
+      icon: (
+        <Image
+          src={"/event.ico"}
+          alt="Event platform project"
+          className=""
+          width={32}
+          height={32}
+        />
+      ),
+      link: "https://github.com/Bas3L3ss/event-management-platform",
+    },
+    {
+      name: "Apple Ecommerce",
+      icon: <Apple size={32} />,
+      link: "https://github.com/Bas3L3ss/apple-store",
+    },
+    {
+      name: "On Research",
+      icon: <FlaskConical size={32} />,
+    },
+  ];
 
   const openScreen = (screenId: string | null) => {
     setActiveScreen(screenId);
@@ -245,6 +277,9 @@ const HomePage = ({ isRevealed = false }: { isRevealed?: boolean }) => {
       {activeScreen === "dsa" && <DSAScreen onBack={closeScreen} />}
       {activeScreen === "system design" && (
         <SystemDesignScreen onBack={closeScreen} />
+      )}
+      {activeScreen === "on research" && (
+        <OnResearchScreen onBack={closeScreen} />
       )}
     </div>
   );

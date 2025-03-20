@@ -463,6 +463,15 @@ const AppFolder = ({
                           name={app.name}
                           icon={app.icon}
                           onClick={() => {
+                            if (app.link) {
+                              window.open(
+                                app.link,
+                                "_blank",
+                                "noopener,noreferrer"
+                              );
+
+                              return;
+                            }
                             openScreen(app.name.toLowerCase());
                           }}
                         />

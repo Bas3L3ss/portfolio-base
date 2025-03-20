@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import AppScreen from "./AppScreen";
 import {
@@ -39,19 +39,15 @@ import {
   SiApachekafka,
   SiSocketdotio,
   SiApachecassandra,
-  SiRedis,
   SiCockroachlabs,
   SiSqlite,
 } from "react-icons/si";
 import {
   BunJs,
-  CassandraDB,
-  Cloudflare,
   CSharp,
   Django,
   Flutter,
   GraphQL,
-  NodeJs,
   PHP,
   Playwright,
   Redis,
@@ -63,7 +59,13 @@ import {
 } from "developer-icons";
 import Image from "next/image";
 import PostHog from "./icon/PostHog";
-import { Database, GitBranch } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronUp,
+  Database,
+  GitBranch,
+} from "lucide-react";
 import { FaAws } from "react-icons/fa";
 import Convex from "./icon/Convex";
 
@@ -1138,4 +1140,288 @@ export const IDEScreen: React.FC<ScreenProps> = ({ onBack }) => {
   ];
 
   return <SkillScreen title="IDEs & Editors" skills={skills} onBack={onBack} />;
+};
+
+export const OnResearchScreen: React.FC<ScreenProps> = ({ onBack }) => {
+  // State to track which sections are expanded (starting with all expanded)
+  const [expandedSections, setExpandedSections] = useState({
+    database: true,
+    vectorSearch: true,
+    deepLearning: true,
+  });
+
+  // Toggle section expansion
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      // @ts-expect-error:no prob
+      [section]: !prev[section],
+    }));
+  };
+
+  return (
+    <AppScreen onBack={onBack} title="My Next Project (HARDCORE)">
+      {/* Scrollable content area */}
+      <div className="flex-1 overflow-auto">
+        <div className="p-4 space-y-4 max-w-3xl mx-auto">
+          {/* Database from Scratch - Collapsible Card */}
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
+            <div
+              className="flex justify-between items-center p-4 cursor-pointer"
+              onClick={() => toggleSection("database")}
+            >
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                1. Database from Scratch
+              </h2>
+              {expandedSections.database ? (
+                <ChevronUp className="w-5 h-5 text-gray-500" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-500" />
+              )}
+            </div>
+
+            {expandedSections.database && (
+              <div className="px-4 pb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                  A low-level database built from scratch to store vectors and
+                  primitive data types. This is the foundation for my future
+                  projects, focusing on storage efficiency, query execution, and
+                  Rust mastery.
+                </p>
+
+                <div className="mb-3">
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Key Focus Areas
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Learn database internals (storage, indexing, query
+                        execution).
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Master Rust while implementing high-performance data
+                        structures.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Ensure extensibility for future optimizations.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Success Criteria
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Efficient CRUD operations and vector storage.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Seamless integration with my vector search engine.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Deep understanding of database internals.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Vector Search Engine - Collapsible Card */}
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            <div
+              className="flex justify-between items-center p-4 cursor-pointer"
+              onClick={() => toggleSection("vectorSearch")}
+            >
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                2. Vector Search Engine
+              </h2>
+              {expandedSections.vectorSearch ? (
+                <ChevronUp className="w-5 h-5 text-gray-500" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-500" />
+              )}
+            </div>
+
+            {expandedSections.vectorSearch && (
+              <div className="px-4 pb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                  A high-performance vector search system embedded into my
+                  database. It will handle approximate nearest neighbor (ANN)
+                  search, making AI-powered retrieval fast and efficient.
+                </p>
+
+                <div className="mb-3">
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Key Focus Areas
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Implement vector indexing techniques (HNSW, IVF, PQ).
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Optimize for speed and memory efficiency.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Benchmark against FAISS, ScaNN, and Milvus.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Success Criteria
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Fast and accurate similarity search.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Real-world use cases (image/text search).
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Deep understanding of ANN search mechanisms.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Custom Deep Learning Framework - Collapsible Card */}
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+          >
+            <div
+              className="flex justify-between items-center p-4 cursor-pointer"
+              onClick={() => toggleSection("deepLearning")}
+            >
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                3. Custom Deep Learning Framework
+              </h2>
+              {expandedSections.deepLearning ? (
+                <ChevronUp className="w-5 h-5 text-gray-500" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-500" />
+              )}
+            </div>
+
+            {expandedSections.deepLearning && (
+              <div className="px-4 pb-4">
+                <p className="text-gray-700 dark:text-gray-300 mb-3">
+                  A deep learning framework built from scratch in Rust,
+                  supporting training and inference. This project aims to
+                  solidify my understanding of ML infrastructure.
+                </p>
+
+                <div className="mb-3">
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Key Focus Areas
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Implement autodiff, optimization algorithms, and
+                        computation graphs.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Explore GPU acceleration (CUDA, Metal) for performance.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Ensure extendability for future AI research.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
+                    Success Criteria
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Train simple neural networks (MLPs, CNNs, Transformers
+                        later).
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Efficient gradient computation and backpropagation.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✅</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        Competitive performance compared to existing frameworks.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    </AppScreen>
+  );
 };

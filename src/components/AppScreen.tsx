@@ -37,7 +37,7 @@ const AppScreen = ({
         <h1 className="text-lg font-semibold flex-1">{title}</h1>
       </div>
 
-      <ScrollArea className="flex-1 overflow-auto">{children}</ScrollArea>
+      <ScrollArea className="flex-1 overflow-auto pb-10">{children}</ScrollArea>
     </div>
   </motion.section>
 );
