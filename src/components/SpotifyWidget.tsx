@@ -22,16 +22,20 @@ export default function SpotifyWidget() {
         </div>
 
         {/* Main Music Panel */}
-        <div className="w-[80%] h-[70%] bg-neutral-800 rounded-lg flex items-center justify-center">
-          <Music className="w-6 h-6 text-white" />
+        <div className="w-[80%] h-[70%] bg-neutral-800 rounded-lg flex flex-col items-center justify-center">
+          <Music className="w-6 h-6 text-white mb-2" />
+          <span className="text-white text-xs font-medium">Now Playing</span>
         </div>
 
-        {/* Title */}
-        <div className="mt-4">
-          <span className="text-white text-sm font-medium">Chill</span>
+        {/* Title & Artist */}
+        <div className="mt-4 text-center">
+          <span className="text-white text-sm font-semibold block">
+            The Greatest
+          </span>
+          <span className="text-neutral-400 text-xs">Billie Eilish</span>
         </div>
       </div>
-      <p className="  mt-2 text-sm text-white text-center ">Spotify</p>
+      <p className="mt-2 text-sm text-white text-center">Spotify</p>
     </div>
   );
 }
