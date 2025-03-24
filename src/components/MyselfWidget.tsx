@@ -5,10 +5,11 @@ export default function SocialWidget() {
     <div>
       <div className="relative w-full rounded-3xl overflow-hidden shadow-lg">
         <div className="relative w-full h-full">
-          <img
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=400&h=400"
+          <Image
+            src="/me.webp"
             alt="Profile background"
-            fill
+            height={500}
+            width={500}
             className="object-cover"
             priority
           />
@@ -19,11 +20,11 @@ export default function SocialWidget() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md rounded-br-3xl  rounded-bl-3xl bg-black/30 p-4">
+        <div className="absolute bottom-0 left-0 right-0 backdrop-blur-sm rounded-br-3xl  rounded-bl-3xl bg-black/30 p-2">
           <div className="flex items-center gap-3">
             <div className="relative size-10 rounded-full overflow-hidden flex-shrink-0">
-              <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=400&h=400"
+              <Image
+                src="/me.webp"
                 alt="Profile picture"
                 fill
                 className="object-cover"
@@ -31,7 +32,7 @@ export default function SocialWidget() {
             </div>
 
             <div className="flex-1">
-              <h3 className="text-white font-semibold">Baseless</h3>
+              <h3 className="text-white text-sm font-semibold">Baseless</h3>
               <p className="text-white/90 text-sm">Let&apos;s contact</p>
             </div>
           </div>

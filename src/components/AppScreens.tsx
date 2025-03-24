@@ -34,6 +34,7 @@ import {
   FaBrain,
 } from "react-icons/fa";
 import Resume from "./icon/Resume";
+import Image from "next/image";
 
 const ExperienceScreen = ({ onBack }: { onBack: () => void }) => {
   const experiences = [
@@ -105,9 +106,14 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 opacity-20 blur-md" />
             <div className="relative w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
               {/* Profile image placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-500 text-4xl">
-                PTH
-              </div>
+              <Image
+                src="/me.webp"
+                alt="Profile background"
+                height={500}
+                width={500}
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">
