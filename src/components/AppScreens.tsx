@@ -120,7 +120,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
             Pham Thien Hung
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            Full-Stack Engineer | Aspiring AI Systems Engineer
+            Software Engineer | Full-Stack & Backend Developer
           </p>
           <div className="flex space-x-4 mt-2">
             <a
@@ -161,7 +161,7 @@ const AboutScreen = ({ onBack }: { onBack: () => void }) => {
             </h3>
             <div className="text-gray-700 dark:text-gray-300 text-sm">
               <Markdown>
-                Results-driven **Full-Stack Engineer** specializing in backend
+                Results-driven **Software Engineer** specializing in backend
                 architecture, scalable applications, and infrastructure
                 optimization. **Seeking remote internships opportunities**. with
                 a strong drive to contribute and **transitioning into the world
